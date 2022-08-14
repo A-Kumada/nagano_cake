@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-1">
+    <h3>商品一覧</h3>
+        <table>
+          <tbody>
+            <tr>
+              <% @genre.items.each do |item| %>
+                <td class="pr-3">
+                    <%= link_to item_path(item) do %>
+                    <%= image_tag item.get_image(180,180) %><br>
+                    <%= item.name %><br>
+                    ￥<%= item.price %>
+                    <% end %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+</div>

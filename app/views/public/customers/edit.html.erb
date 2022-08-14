@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12 p-4">
+      <h4>会員情報編集</h4>
+    </div>
+  </div>
+
+   <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+
+  <div class="form-group row">
+    <div class="col-md-3">
+      <p><%= f.label :"氏名" %></p>
+      <p><%= f.label :"フリガナ" %></p>
+      <p><%= f.label :"郵便番号" %></p>
+      <p><%= f.label :"住所" %></p>
+      <p><%= f.label :"電話番号" %></p>
+      <p><%= f.label :"メールアドレス" %></p>
+      </div>
+
+    <div class="col-md-3">
+      <p><%= f.text_field :last_name %></p>
+      <p><%= f.text_field :last_name_kana %></p>
+      <p><%= f.text_field :postal_code %></p>
+      <p><%= f.text_field :address, :size=>"60" %></p>
+      <p><%= f.text_field :telephone_number %></p>
+      <p><%= f.text_field :email %></p>
+    </div>
+
+    <div class="col-md-3">
+      <p><%= f.text_field :first_name %></p>
+      <p><%= f.text_field :first_name_kana %></p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-3">
+      <p>　</p>
+    </div>
+    <div class="col-md-3">
+      <%=f.submit "編集内容を保存",class:"btn btn-success" %>
+    </div>
+    <% end %>
+    <div class="col-md-3">
+      <%= link_to unsubscribe_path,class:"btn btn-danger" do %>退会する
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

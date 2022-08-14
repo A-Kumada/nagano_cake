@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-11 pl-5 pb-3">
+      <h4>商品一覧</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-11">
+      <table class="table table-hover table-inverse">
+        <tr class="bg-light">
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+
+         <% @items.each do |item| %>
+
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= link_to item.name, admin_item_path(item) %></td>
+    <td><%= (item.price).floor.to_s(:delimited) %></td>
+    <td><%= item.genre.name %></td>
+    <td>
+      <% if item.is_active == true %>
+      <%= "販売中" %>
+      <% else %>
+      <%=  "売り切れ" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+
+</table>
+</div>
+</div>
+</div>
+
+
+<%= paginate @items %>

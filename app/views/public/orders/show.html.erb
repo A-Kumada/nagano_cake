@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 offset-1 pb-3">
+    <h4>注文履歴詳細</h4>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-7'>
+      <span><strong>注文情報</strong></span>
+      <table class='table table-bordered border-dark'>
+      <tr><th class="table-secondary" scope="col" style="width: 30%">注文日</th> <td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+      <tr><th class="table-secondary">配送先</th><td>〒<%= @order.postal_code %><br><%= @order.address %><br><%= @order.name%></td></tr>
+      <tr><TH class="table-secondary">支払方法</TH> <td><%= @order.payment_method_i18n %></td></tr>
+      </table>
+    </div>
+
+    <div class='col-4'>
+      <strong>請求情報</strong>
+      <table class="table table-bordered border-dark">
+        <tr><th class="table-secondary">商品合計</th><td><%= (@order.total_payment-@order.shipping_cost).to_s(:delimited) %></td></tr>
+        <tr><th class="table-secondary">送料</th><td><%= @order.shipping_cost %></td></tr>
+        <tr><th class="table-secondary">請求金額</th><td><%= @order.total_payment.to_s(:delimited) %></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-8'>
+      <strong>注文内容</strong>
+      <table class="table table-bordered border-dark">
+      <tr class="table-secondary">
+        <th scope="col" style="width: 60%">商品</th><th scope="col" style="width: 20%">単価（税込）</th>
+        <th scope="col" style="width: 10%">個数</th><th scope="col" style="width: 20%">小計</th></tr>
+
+        <% @order.order_details.each do |cart_item| %>
+				    <tr>
+				     	<td><%= cart_item.item.name %></td>
+				     	<td><%= cart_item.item.with_tax_price %></td>
+				     	<td><%= cart_item.amount %></td>
+				     	<td><%= cart_item.item.with_tax_price * cart_item.amount %></td>
+				    </tr>
+				      <% end %>
+      </table>
+    </div>
+  </div>
+</div>

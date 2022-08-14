@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-8 offset-1">
+      <h4 class="pb-2 pt-2">注文履歴一覧</h4>
+        <table class="table table-hover table-inverse">
+          <tr class="table-secondary"><th>購入日時</th><th>購入書</th><th>注文個数</th></tr>
+
+            <% @orders.order_details.each do |f| %>
+            <tr>
+              <td><%= f.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+              <td><%= f.customer.full_name %></td>
+              <td><%= f.order_details.amount %></td>
+            </tr>
+             <% end %>
+        </table>
+    </div>
+
+    <%= paginate @orders %>

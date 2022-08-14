@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row p-2">
+    <div class="col-md-12">
+      <h5><strong>支払方法</strong></h5>
+        <div class="pl-5">
+          <%= form_with model: @order,url: "/orders/confirm", method: :post, local: true do |f| %>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: "checked" %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+          <br>
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+        </div><br>
+
+      <h5><strong>届け先</strong></h5>
+        <div class="pl-5">
+         <%= f.radio_button :select_address, 0, checked: "checked" %>
+         <%= f.label :address, "ご自身の住所" %>
+         <div class="pl-4 pb-2">
+         〒<%= @customer.postal_code %><%= @customer.address %><br>
+         <%= @customer.full_name %>
+         </div>
+         <%= f.radio_button :select_address, 1 %>
+         <%= f.label :address, "選択済住所から選択" %>
+         <div class="pl-4 pb-2">
+         <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :view_address ) %>
+         </div>
+         <%= f.radio_button :select_address, 2 %>
+         <%= f.label :address, "新しいお届け先" %>
+         <table class="ml-4">
+           <tr><td class="pb-2">郵便番号(ハイフンなし)　</td><td class="pb-2"><%= f.text_field :postal_code, :placeholder=>"000000" %></td></tr>
+           <tr><td class="pb-2">住所</td><td class="pb-2"><%= f.text_field :address, :size=>"60", :placeholder=>"東京都渋谷区代々木" %></td></tr>
+           <tr><td class="pb-2">宛名</td><td class="pb-2"><%= f.text_field :name, :placeholder=>"令和道子" %></td></tr>
+           </table>
+         </div><br>
+         <div class="text-center">
+         <%= f.submit "確認画面に進む",class:"btn btn-primary" %>
+
+         <% end %>
+         </div>
+        </div>

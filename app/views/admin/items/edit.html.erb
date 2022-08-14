@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 pb-3 offset-1">
+      <h4>商品編集</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 pt-2 offset-3">
+    <%= form_with model: @item, url: admin_item_path(@item), method: :patch do |item| %>
+
+    <table>
+      <tr><td width="170" class="pb-2">商品画像</td><td class="pb-2"><%= item.file_field :image, accept: "image/*" %></td></tr>
+      <tr><td class="pb-2">商品名</td><td class="pb-2"><%= item.text_field :name, :size=>"30" %></td></tr>
+      <tr><td class="pb-2">商品説明</td><td class="pb-2"><%= item.text_area :introduction, :size=>"30x5" %></td></tr>
+      <tr><td class="pb-3">ジャンル</td><td class="pb-3"><%= item.collection_select :genre_id, Genre.all, :id, :name, include_blank: '--選択してください--' %></td></tr>
+      <tr><td class="pb-3">税抜価格</td><td class="pb-3"><%= item.text_field :price, :size=>"30" %>円</td></tr>
+      <tr><td class="pb-4">販売ステータス</td>
+          <td class="pb-4">
+            <%= item.radio_button :is_active, :true %>
+            <%= item.label :is_active, "販売中" %>
+            <%= item.radio_button :is_active, :false %>
+            <%= item.label :is_active, "販売停止中" %><br />
+          </td>
+      </tr>
+
+
+    </table>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= item.submit "変更を保存",class:"btn btn-success btn-lg" %>
+  <% end %>
+  </div>
+</div>
