@@ -7,18 +7,13 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3">
-      <p>郵便番号(ハイフンなし)</p><p>住所</p><p>宛名</p>
-    </div>
-    <div class="col-md-6">
-    <%= form_with model: @address, url: addresses_path do |f| %>
-    <p><%= f.text_field :postal_code %></p>
-    <p><%= f.text_field :address, :size=>"50" %></p>
-    <p><%= f.text_field :name %></p>
-    </div>
-    <div class="col-md-3">
-    <p>　</p><p>　</p>
-    <p><%= f.submit "新規登録" ,class:"btn btn-success" %>
+    <div class="col-md-11">
+      <%= form_with model: @address, url: addresses_path do |f| %>
+      <table>
+        <tr><td width="220" class="pb-2">郵便番号(ハイフンなし)</td><td class="pb-2"><%= f.text_field :postal_code %></td></tr>
+        <tr><td class="pb-2">住所</td><td class="pb-2"><%= f.text_field :address, :size=>"50" %></td></tr>
+        <tr><td class="pb-2">宛名</td><td><%= f.text_field :name %></td><td class="pb-2"><%= f.submit "新規登録" ,class:"btn btn-success" %></td></tr>
+    </table>
     <% end %>
     </div>
   </div>

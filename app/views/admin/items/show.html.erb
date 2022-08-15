@@ -7,27 +7,23 @@
 
   <div class='row'>
     <div class="col-md-4">
-      <%= image_tag @item.get_image(200,200) %>
+      <%= image_tag @item.get_image(220,220) %>
     </div>
-    <div class="col-md-1.5">
-      <p>商品名</p>
-      <p>商品説明</p>
-      <p>ジャンル</p>
-      <p>販売価格<br>(税抜き価格)</p>
-      <p>販売ステータス</p>
-    </div>
-
-    <div class="col-md-6">
-      <p><%= @item.name %></p>
-      <p><%= @item.introduction %></p>
-      <p><%=@item.genre.name %></p>
-      <p><%= (@item.price*1.1).floor.to_s(:delimited) %>(<%= (@item.price).floor.to_s(:delimited) %>)円</p>
-      <p>
-      <% if @item.is_active == true %>
-      <%= "販売中" %>
-      <% else %>
-      <%=  "売り切れ" %>
-      <% end %> </p>
+    <div class="col-md-7">
+      <table>
+        <tr><td width="150 pb-3">商品名</td><td class="pb-3"><%= @item.name %></td></tr>
+        <tr><td class="pb-3">商品説明</td><td class="pb-3"><%= @item.introduction %></td></tr>
+        <tr><td class="pb-3">ジャンル</td><td class="pb-3"><%=@item.genre.name %></td></tr>
+        <tr><td class="pb-3">販売価格<br>(税抜き価格)</td><td class="pb-3"><%= (@item.price*1.1).floor.to_s(:delimited) %>(<%= (@item.price).floor.to_s(:delimited) %>)円</td></tr>
+        <tr><td class="pb-5">販売ステータス</td>
+            <td class="pb-5"><% if @item.is_active == true %>
+                <%= "販売中" %>
+                <% else %>
+                <%=  "売り切れ" %>
+                <% end %>
+            </td>
+        </tr>
+      </table>
     </div>
   </div>
 

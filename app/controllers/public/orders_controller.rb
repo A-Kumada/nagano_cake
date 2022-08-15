@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   def new
     @customer = current_customer
     @order = Order.new
-    @addresses = current_customer.addresses.all
+    @addresses = current_customer.addresses
   end
 
   def confirm
@@ -40,7 +40,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.order_id =  @order.id
       @order_detail.item_id = cart_item.item_id
       @order_detail.amount = cart_item.amount
-      @order_detail.price = (cart_item.item.price*1.08).floor
+      @order_detail.price = (cart_item.item.with_tax_price).floor
 
       @order_detail.save
      end
@@ -64,7 +64,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-  params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment)
+  params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment,)
   end
 
 end

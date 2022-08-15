@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class='row'>
-        <div class='col-7 offset-1'>
+        <div class='col-8'>
           <table class='table table-bordered border-dark'>
             <tr class="table-secondary">
                 <th>商品名</th>
@@ -19,14 +19,14 @@
               <tr>
                   <td><%= image_tag cart_item.item.get_image(50,50) %>
                       <%= cart_item.item.name %></td>
-                  <td><%= (cart_item.item.price*1.08).to_i.to_s(:delimited) %></td>
+                  <td><%= (cart_item.item.with_tax_price).to_i.to_s(:delimited) %></td>
                   <td><%= cart_item.amount %></td>
                   <td>
-                      <% subtotal = ((cart_item.item.price*cart_item.amount)*1.08).to_i.to_s(:delimited) %>
+                      <% subtotal = (cart_item.item.with_tax_price*cart_item.amount).to_s(:delimited) %>
                       <%= subtotal %>
                   </td>
               </tr>
-              <% total += (cart_item.item.price*cart_item.amount)*1.08 %>
+              <% total += (cart_item.item.with_tax_price*cart_item.amount) %>
             <% end %>
           </table>
         </div>
@@ -42,10 +42,10 @@
     </div>
 
     <div class="row">
-        <div class='col-11 offset-1'>
+        <div class='col-11'>
             <table class="table table-borderless">
-                <tr><th class="col-1">支払い方法</th><td class="col-10"><%= @order.payment_method_i18n %></td></tr>
-                <tr><th class="col-1">お届け先</th><td class="col-10">
+                <tr><th class="col-2">支払い方法</th><td class="col-10"><%= @order.payment_method_i18n %></td></tr>
+                <tr><th class="col-2">お届け先</th><td class="col-10">
                 〒<%= @order.postal_code %>
                 <%= @order.address %><br>
                 <%= @order.name %>

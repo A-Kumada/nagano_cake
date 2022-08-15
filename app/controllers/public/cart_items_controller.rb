@@ -10,6 +10,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.new(cart_item_params)
     cart_item_params[:item_id]
     @cart_item.customer_id = current_customer.id
+
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]) .present?
        cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
        cart_item.amount += params[:cart_item][:amount].to_i
@@ -18,7 +19,7 @@ class Public::CartItemsController < ApplicationController
     elsif @cart_item.save
           @cart_items = current_customer.cart_items.all
           render 'index'
-    else　# 保存できなかった場合
+    else
           render 'index'
     end
   end

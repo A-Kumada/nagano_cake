@@ -23,11 +23,11 @@
          <%= f.radio_button :select_address, 1 %>
          <%= f.label :address, "選択済住所から選択" %>
          <div class="pl-4 pb-2">
-         <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :view_address ) %>
+         <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :view_address ) %>
          </div>
          <%= f.radio_button :select_address, 2 %>
          <%= f.label :address, "新しいお届け先" %>
-         <table class="ml-4">
+         <table>
            <tr><td class="pb-2">郵便番号(ハイフンなし)　</td><td class="pb-2"><%= f.text_field :postal_code, :placeholder=>"000000" %></td></tr>
            <tr><td class="pb-2">住所</td><td class="pb-2"><%= f.text_field :address, :size=>"60", :placeholder=>"東京都渋谷区代々木" %></td></tr>
            <tr><td class="pb-2">宛名</td><td class="pb-2"><%= f.text_field :name, :placeholder=>"令和道子" %></td></tr>

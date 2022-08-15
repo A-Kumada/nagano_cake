@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-5 offset-1 pb-4">
+      <h4>注文履歴詳細</h4>
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="col-md-10 pb-4">
+      <table>
+        <tr><th width="150" class="pb-2">購入者</th><td class="pb-2"><%= @order.customer.full_name %></td></tr>
+        <tr><th class="pb-2">注文日 </th><td class="pb-2"><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+        <tr><th class="pb-2">配送先</th><td class="pb-2"><%= @order.address %><%= @order.address %><br><%= @order.name %></td></tr>
+        <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
+      </table><br><br>
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="col-md-8 pb-4">
+      <table class="table">
+      <tr class="table-secondary">
+        <th scope="col" style="width: 50%">商品</th><th scope="col" style="width: 20%">単価（税込）</th>
+        <th scope="col" style="width: 10%">個数</th><th scope="col" style="width: 20%">小計</th></tr>
+
+        <% total = 0 %>
+        <% @order.order_details.each do |order_detail| %>
+				    <tr>
+				     	<td><%= order_detail.item.name %></td>
+				     	<td><%= order_detail.price %></td>
+				     	<td><%= order_detail.amount %></td>
+				     	<td><%= order_detail.price * order_detail.amount %>
+				     	 <%#= subtotal %></td>
+              </tr>
+              <% total += (order_detail.price*order_detail.amount) %>
+            <% end %>
+
+      </table>
+    </div>
+
+    <div class="col-md-4 pl-5">
+      <table>
+        <tr><th width="120" class="pb-2">商品合計</th><td><%= (@order.total_payment-@order.shipping_cost).to_s(:delimited) %></td></tr>
+        <tr><th class="pb-2">送料</th><td class="pb-2"><%= @order.shipping_cost %></td></tr>
+        <tr><th class="pb-2">請求金額合計</th><td class="pb-2"><%= @order.total_payment.to_s(:delimited) %></td></tr>
+      </table>
+    </div>
+  </div>
+</div>

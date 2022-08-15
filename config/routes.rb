@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/show'
+  end
   root to: "homes#top"
   get "/about" => "homes#about", as: "about"
   get "/admin"  => "admin/homes#top"
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :update, :create, :show]
     resources :items, only: [:index, :edit, :update, :create, :show, :new]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only:[:show]
   end
 
 

@@ -31,7 +31,7 @@
       <p><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %></p>
       <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
       <p><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></p>
-      <p><%= f.text_field :address, autofocus: true, autocomplete: "address" %></p>
+      <p><%= f.text_field :address, autofocus: true, autocomplete: "address",:size=>"60" %></p>
       <p><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></p>
       <p><%= f.password_field :password, autocomplete: "new-password" %></p>
       <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
