@@ -1,49 +1,36 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-12 p-4">
-      <h4>会員情報編集</h4>
+    <div class="col-sm-10 p-4">
+      <h4 class="offset-1 pb-3">会員情報編集</h4>
     </div>
   </div>
 
    <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
 
-  <div class="form-group row">
-    <div class="col-md-3">
-      <p><%= f.label :"氏名" %></p>
-      <p><%= f.label :"フリガナ" %></p>
-      <p><%= f.label :"郵便番号" %></p>
-      <p><%= f.label :"住所" %></p>
-      <p><%= f.label :"電話番号" %></p>
-      <p><%= f.label :"メールアドレス" %></p>
-      </div>
-
-    <div class="col-md-3">
-      <p><%= f.text_field :last_name %></p>
-      <p><%= f.text_field :last_name_kana %></p>
-      <p><%= f.text_field :postal_code %></p>
-      <p><%= f.text_field :address, :size=>"60" %></p>
-      <p><%= f.text_field :telephone_number %></p>
-      <p><%= f.text_field :email %></p>
+  <div class="row">
+    <div class="col-md-10 pl-5">
+      <table>
+      <tr><td width="200" class="pb-2"><%= f.label :"氏名" %></td><td class="pb-2"><%= f.text_field :last_name %></td><td class="pb-2"><%= f.text_field :first_name %></td></tr>
+      <tr><td class="pb-2"><%= f.label :"フリガナ" %></td><td class="pb-2"><%= f.text_field :last_name_kana %></td><td class="pb-2"><%= f.text_field :first_name_kana %></td></tr>
+      <tr><td class="pb-2"><%= f.label :"郵便番号" %></td><td class="pb-2"><%= f.text_field :postal_code %></td></tr>
+      <tr><td class="pb-2"><%= f.label :"住所" %></td><td colspan="2" class="pb-2"><%= f.text_field :address, :size=>"60" %></td></tr>
+      <tr><td class="pb-2"><%= f.label :"電話番号" %></td><td class="pb-2"><%= f.text_field :telephone_number %></td></tr>
+      <tr><td class="pb-4"><%= f.label :"メールアドレス" %></td><td class="pb-4"><%= f.text_field :email %></td></tr>
+      <tr><td></td><td><%=f.submit "編集内容を保存",class:"btn btn-success pl-5 pr-5" %></td>
+          <td class="pl-5"><%= link_to unsubscribe_path,class:"btn btn-danger" do %>退会する
+              <% end %>
+          </td>
+      </tr>
+      </table>
     </div>
 
-    <div class="col-md-3">
-      <p><%= f.text_field :first_name %></p>
-      <p><%= f.text_field :first_name_kana %></p>
-    </div>
-  </div>
+    <div class="col-md-4 offset-md-2 pt-4">
 
-  <div class="form-group row">
-    <div class="col-md-3">
-      <p>　</p>
-    </div>
-    <div class="col-md-3">
-      <%=f.submit "編集内容を保存",class:"btn btn-success" %>
     </div>
     <% end %>
-    <div class="col-md-3">
-      <%= link_to unsubscribe_path,class:"btn btn-danger" do %>退会する
-      <% end %>
+    <div class="col-md-3 pt-4">
+
     </div>
   </div>
 </div>

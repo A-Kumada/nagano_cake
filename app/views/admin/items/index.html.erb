@@ -3,6 +3,9 @@
   <div class="row">
     <div class="col-md-11 pl-5 pb-3">
       <h4>商品一覧</h4>
+          <%= link_to new_admin_item_path, class:"nav-link text-dark text-right" do %>
+          <i class="fa-solid fa-plus"></i>新規登録
+          <% end %>
     </div>
   </div>
 
@@ -35,10 +38,11 @@
         <% end %>
       </table>
 
-      <div class="center-block">
-        <div><%= paginate @items %></div>
-      </div>
 
+
+    </div>
+    <div class="col-md-2 offset-md-5">
+        <div><%= paginate @items %></div>
     </div>
   </div>
 </div>
